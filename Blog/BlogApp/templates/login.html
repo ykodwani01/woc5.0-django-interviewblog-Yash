@@ -75,60 +75,22 @@
 
           <div class="card bg-glass">
             <div class="card-body px-4 py-5 px-md-5">
-              <h2 class="text-center pb-3">Register</h2>
-              <p>Password must match and should contain atleat one alphabet , one digit , one special character and length should be atleast three</p>
-              <form action="register" method="POST"  >
-                {% csrf_token %}
-
+              <h2 class="text-center pb-3">LOGIN</h2>
+              
+              <form action="/login" method="POST"> {% csrf_token %}
+                
+               
                 <div class="form-outline mb-4">
-                  {{form.username.label}}
-                  {{form.username}}
-                </div>
-                  
+                    <input type="text" id="username" name="username" placeholder="Username">
+                    <input type="Password" id="password" name="password" placeholder="password">
 
-                <div class="form-outline mb-4">
-                  {{form.email.label}}
-                   {{form.email}}
-                    
-                </div>
-
-                <!-- Email input -->
-                <div class="form-outline mb-4">
-                  {{form.password1.label}}
-                  {{form.password1}}
-                </div>
-
-                  <div class="form-outline mb-4">
-                    {{form.password2.label}}
-                      {{form.password2}}
                       
                   </div>
-
-                  <div class="form-outline mb-4">
-                    {{form.batch.label}}
-                      {{form.batch}}
-                      
-                  </div>
-
-                  <div class="form-outline mb-4">
-                    {{form.course.label}}
-                      {{form.course}}
-                      
-                  </div>
-
-                  
-                  <div class="form-outline mb-4">
-                    {{form.contact_number.label}}
-                      {{form.contact_number}}
-                      
-                  </div>
-  
-
+                
 
                 
                 
-                
-                <input type="submit" name="Create User"> 
+                <input type="submit" name="Create User">
               </form>
             </div>
           </div>
