@@ -21,6 +21,9 @@ def logout_handler(request):
     return redirect('index')
 
 def login_handler(request):
+
+    if request.user.is_authenticated:
+        return redirect('home')
     if(request.method=="POST"):
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -30,6 +33,7 @@ def login_handler(request):
             login(request,user)
             return redirect (home)
         else:
+            messages.info(request,"INVALID Password or Username")
             return render(request,'login.html')
     return render(request,'login.html')
 

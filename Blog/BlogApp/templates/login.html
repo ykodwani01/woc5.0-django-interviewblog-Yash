@@ -87,7 +87,9 @@
                       
                   </div>
                 
-
+                  {%for message in messages%}
+                    {{message}}
+                  {%endfor%}
                 
                 
                 <input type="submit" name="Create User">
