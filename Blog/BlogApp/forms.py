@@ -9,11 +9,12 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 
 class CreateUserForm(UserCreationForm):
-    contact_number = forms.CharField(label='Contact Number') 
-    course = forms.CharField(label='Course') 
-    batch=forms.IntegerField(label="Batch")
+    contact_number = forms.CharField(label='Contact Number',required=False) 
+    course = forms.ChoiceField(label="Course", choices=[('BTECH','BTECH'),('MCA','MCA'),('MTECH','MTECH'),('COMMERCE','COMMERCE'),('MTECH','MTECH'),('MSC','MSC')], required=True)
+    batch=forms.IntegerField(label="Batch",required=False)
     
 
     class Meta:
+        # User.username=User.email
         model = User
-        fields=['username','email','batch','course','password1','password2']
+        fields=['username','first_name','email','batch','course','password1','password2']

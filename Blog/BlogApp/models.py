@@ -8,7 +8,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     contact_number = models.CharField(max_length=12, null=True)
     batch=models.IntegerField(max_length=10,default=1990)
-    course = models.CharField(max_length=100)
+    course = models.CharField(max_length=100,choices=(('BTECH','BTECH'),('MCA','MCA'),('MTECH','MTECH'),('COMMERCE','COMMERCE'),('MTECH','MTECH'),('MSC','MSC')))
     
 
     def __str__(self):

@@ -79,16 +79,23 @@
               <p>Password must match and should contain atleat one alphabet , one digit , one special character and length should be atleast three</p>
               <form action="register" method="POST"  >
                 {% csrf_token %}
-
-                <div class="form-outline mb-4">
-                  {{form.username.label}}
-                  {{form.username}}
-                </div>
-                  
+               
 
                 <div class="form-outline mb-4">
                   {{form.email.label}}
-                   {{form.email}}
+                  {{form.username}}
+                  
+                </div>
+
+                <div class="form-outline mb-4">
+                  {{form.first_name.label}}
+                {{form.first_name}}
+                  
+                </div>
+                  
+                  
+                <div class="form-outline mb-4">
+                  
                     
                 </div>
 
@@ -130,6 +137,8 @@
                 
                 <input type="submit" name="Create User"> 
               </form>
+
+              Already Registered ? <a href="/login">Click here</a>
             </div>
           </div>
         </div>

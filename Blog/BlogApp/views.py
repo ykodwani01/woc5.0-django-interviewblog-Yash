@@ -23,7 +23,7 @@ def logout_handler(request):
 def login_handler(request):
 
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('profile')
     if(request.method=="POST"):
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -31,15 +31,16 @@ def login_handler(request):
 
         if user is not None:
             login(request,user)
-            return redirect (home)
+            return redirect (profile)
         else:
             messages.info(request,"INVALID Password or Username")
             return render(request,'login.html')
     return render(request,'login.html')
 
 @login_required(login_url='/login')
-def home(request):
-    return render(request,'blogpage.html')
+def profile(request):
+    return render(request,'dashboard.html')
+
 
 def register(request):
 
@@ -59,14 +60,25 @@ def register(request):
     #     myuser.save()
     #     return render(request,'index.html')
     form=CreateUserForm(request.POST)
+
+    
     if(request.method=="POST"):
+        # print(form)
+        
         if form.is_valid():
+            # user.email=user
+
             user=form.save()
             user.batch=form.cleaned_data.get('batch')
             user.course=request.POST.get('course')
-
+            #user.email=form.cleaned_data('email')
             user.contact_number=request.POST.get('contact_number')
             print(user)
+            amp=User.objects.get(username=user)
+            amp.email=amp.username
+            amp.save()
+            
+
             temp=Profile.objects.all()
             hello=Profile(user=user)
             hello.batch=user.batch
@@ -80,3 +92,7 @@ def register(request):
 
     
     return render(request,'register.html',{'form':form})
+
+
+def home(request):
+    return render(request,'blogpage.html')
