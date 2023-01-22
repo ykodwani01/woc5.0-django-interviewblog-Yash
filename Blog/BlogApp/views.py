@@ -14,6 +14,7 @@ from .forms import *
 
 
 # Create your views here.
+
 def index(request):
     return render(request,'index.html')
 def logout_handler(request):
@@ -94,5 +95,16 @@ def register(request):
     return render(request,'register.html',{'form':form})
 
 
+
+@login_required(login_url='/login')
 def home(request):
-    return render(request,'blogpage.html')
+    temp=BlogPost.objects.all()
+    params={'posts': temp}
+    return render(request,'blogpage.html',params)
+
+def post(request,post_id):
+    temp=BlogPost.objects.filter(post_id=post_id)
+    print(temp)
+    params={'posts': temp[0]}   
+    return render(request,'post.html',params)
+

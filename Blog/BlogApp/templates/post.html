@@ -1,0 +1,23 @@
+{% extends 'basic.html' %}    
+
+{%block title%}Blog Page{%endblock%}
+
+{%block body%}
+
+<div class="container">
+    <div class="col-md-8">
+
+      <article class="blog-post">
+        <h2 class="blog-post-title mb-1">{{posts.title}}</h2>
+        {% comment %} <p class="blog-post-meta">{{posts.publish_date}}<a href="#"></a></p> {% endcomment %}
+
+        <p>{{posts.content}}
+        </p>
+        <div class="fb-comments" data-href="http://localhost:8000/blog/post" data-width="" data-numposts="10"></div>
+      </article>
+
+      </div>
+
+    </div>
+
+{%endblock%}

@@ -17,9 +17,13 @@ class Profile(models.Model):
 
 class BlogPost(models.Model):
 
-    id=models.IntegerField(primary_key=True)
+    post_id=models.AutoField(primary_key=True)
     title=models.CharField(max_length=100)
     content=models.CharField(max_length=5000)
+
+    def __str__(self):
+        return self.title
+
 
 
 
