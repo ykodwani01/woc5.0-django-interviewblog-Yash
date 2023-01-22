@@ -40,7 +40,17 @@ def login_handler(request):
 
 @login_required(login_url='/login')
 def profile(request):
-    return render(request,'dashboard.html')
+    # print(User)
+    
+    temp=Profile.objects.get(user=request.user.id)
+    # print(temp)
+    b=temp.batch
+    c=temp.course
+    print(b)
+    params={'b':b,'c':c}
+
+
+    return render(request,'dashboard.html',params)
 
 
 def register(request):
