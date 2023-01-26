@@ -4,9 +4,24 @@
 
 {%block body%}
 
-<h3>
+{% comment %} <h3>
     Hello  {{request.user.username}}</h3>
     <h4>Your batch is {{b}}</h4>
-    <h4>Your course is {{c}}</h4>
-
+    <h4>Your course is {{c}}</h4> {% endcomment %}
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src = "" alt="Image will be here">
+        <div class="card-body">
+          <h5 class="card-title">Email : {{request.user.username}}</h5>
+          <p class="card-text">{{request.user.first_name}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Batch : {{request.user.profile.batch}}</li>
+          <li class="list-group-item">Course : {{request.user.profile.course}}</li>
+          <li class="list-group-item">Contact No : {{request.user.profile.contact_number}}</li>
+        </ul>
+        <div class="card-body">
+          <a href="/edit" class="card-link">Edit</a>
+          
+        </div>
+      </div>
 {%endblock%}

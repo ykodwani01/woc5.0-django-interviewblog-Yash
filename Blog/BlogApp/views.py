@@ -112,9 +112,35 @@ def home(request):
     params={'posts': temp}
     return render(request,'blogpage.html',params)
 
+@login_required(login_url='/login')
 def post(request,post_id):
     temp=BlogPost.objects.filter(post_id=post_id)
     print(temp)
     params={'posts': temp[0]}   
     return render(request,'post.html',params)
 
+
+
+
+@login_required(login_url='/login')
+def add(request):
+    
+    
+    if request.method=="POST":
+        #print(request.user)
+        title=request.POST.get('title')
+        content=request.POST.get('content')
+        company=request.POST.get('company')
+        temp=request.user
+        hello=BlogPost(title=title,content=content,company_name=company,author=temp)
+        hello.save()
+
+
+    return render(request,'add_post.html')
+
+
+def search(request):
+    query=request.GET.get('query')
+    posts=BlogPost.objects.filter(title__icontains=query)
+    params={ 'posts' : posts }
+    return render(request,'search_results.html',params)

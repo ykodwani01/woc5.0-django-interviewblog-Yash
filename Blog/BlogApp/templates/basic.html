@@ -82,6 +82,12 @@
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
           }
+
+          .card {
+            margin: 100 auto; /* Added */
+            float: none; /* Added */
+            margin-bottom: 10px; /* Added */
+    }
         </style>
     
         
@@ -107,20 +113,20 @@
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link" href="home">Explore</a>
+                    <a class="nav-link" href="/home">Explore</a>
                   </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Options
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="profile">View Profile</a>
+                    <a class="dropdown-item" href="/profile">View Profile</a>
                     <a class="dropdown-item" href="/logout">Logout</a>   
                   </div>
                 </li>
                 
               </ul>
-              <form class="form-inline my-2 my-lg-0" method="get " action="/blog/search">
+              <form class="form-inline my-2 my-lg-0" method="get " action="/search">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query" id="query">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
               </form>

@@ -18,8 +18,11 @@ class Profile(models.Model):
 class BlogPost(models.Model):
 
     post_id=models.AutoField(primary_key=True)
-    title=models.CharField(max_length=100)
-    content=models.CharField(max_length=5000)
+    title=models.CharField(max_length=100,default="")
+    content=models.CharField(max_length=5000,default="")
+    job_offer=models.CharField(max_length=100,choices=(('Summer Intern','Summer Intern'),('Job','Job'),('PPO','PPO'),('Winter Intern','Winter Intern')),default=1)
+    company_name=models.CharField(max_length=200,default="")
+    author=models.ForeignKey(User,on_delete=models.CASCADE,blank=True,null=True)
 
     def __str__(self):
         return self.title

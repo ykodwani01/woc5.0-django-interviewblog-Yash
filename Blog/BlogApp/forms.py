@@ -18,3 +18,12 @@ class CreateUserForm(UserCreationForm):
         # User.username=User.email
         model = User
         fields=['username','first_name','email','batch','course','password1','password2']
+
+
+class CreateNewPost(forms.Form):
+    
+    title=forms.CharField(label="Title")
+    content=forms.CharField(label="Content")
+    job_offer=forms.ChoiceField(label="Job Type",choices=(('Summer Intern','Summer Intern'),('Job','Job'),('PPO','PPO'),('Winter Intern','Winter Intern')))
+    company_name=forms.CharField(label="Company")
+    author=forms.CharField(label="Author")
