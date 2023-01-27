@@ -131,10 +131,24 @@ def add(request):
         title=request.POST.get('title')
         content=request.POST.get('content')
         company=request.POST.get('company')
+        print("hello")
+        job_type=request.POST.get('job_type')
+        print(job_type)
+        year=request.POST.get('year')
+        if job_type=="WINTER INTERN":
+            a=3
+        if job_type=="JOB":
+            a=1
+        if job_type=="SUMMER INTERN":
+            a=0
+        if job_type=="PPO":
+            a=2
+        print(a)
         temp=request.user
-        hello=BlogPost(title=title,content=content,company_name=company,author=temp)
+        hello=BlogPost(title=title,content=content,company_name=company,author=temp,job_offer=a,year=year)
         hello.save()
 
+        messages.info(request," Post Published")
 
     return render(request,'add_post.html')
 
@@ -144,3 +158,14 @@ def search(request):
     posts=BlogPost.objects.filter(title__icontains=query)
     params={ 'posts' : posts }
     return render(request,'search_results.html',params)
+
+@login_required(login_url='/login')
+def show_bookmark(request):
+    a=request.user
+    b=Bookm.objects.filter(user_id=a)
+    
+    
+
+    #list_post=BlogPost.objects.filter(b)
+    params={'posts':b}
+    return render(request,'bookmarks.html',params)

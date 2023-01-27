@@ -14,6 +14,7 @@ urlpatterns = [
     path('search',views.search,name='search'),
     path('logout',views.logout_handler,name='logout_handler'),
     path('add',views.add,name="add"),
+    path('bookmarks',views.show_bookmark,name='bookmark'),
     path("post/<int:post_id>",views.post,name="post"),
     
     path("reset",auth_views.PasswordResetView.as_view()),

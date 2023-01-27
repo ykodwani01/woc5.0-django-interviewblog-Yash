@@ -3,6 +3,8 @@
 {%block title%}Blog Page{%endblock%}
 
 {%block body%}
+<div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v15.0" nonce="IcXy9rSX"></script>
 
 <div class="container">
     <div class="col-md-8">
@@ -13,7 +15,7 @@
 
         <p>{{posts.content}}
         </p>
-        <div class="fb-comments" data-href="http://localhost:8000/blog/post" data-width="" data-numposts="10"></div>
+        <div class="fb-comments" data-href="http://localhost:8000/post/{{post_id}}" data-width="" data-numposts="10"></div>
       </article>
 
       </div>

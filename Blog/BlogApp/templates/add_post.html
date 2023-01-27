@@ -13,6 +13,11 @@
           <input type="text" class="form-control" id="title" name="title" required>
         </div>
 
+        <div class="form-group">
+          Year
+          <input type="number" class="form-control" id="year" name="year" required>
+        </div>
+
         
 
           <div class="form-group">
@@ -22,20 +27,26 @@
         <div class="form-group">
           <label for="job_type">Example select</label>
           <select class="form-control" id="job_type" name="job_type" required>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+            <option>PPO</option>
+            <option>JOB</option>
+            <option>SUMMER INTERN</option>
+            <option>WINTER INTERN</option>
+            
           </select>
         </div>
         
         <div class="form-group">
           <label for="content">Content</label>
-          <textarea class="form-control" id="content" name="content" rows="3"></textarea>
+          <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
         </div>
 
         <input type="submit" name="submit"></input>
-    
+      </form>
+<p>
+        {%for message in messages%}
+        
+        {{message}}
 
+        {%endfor%}
+</p>
 {%endblock%}
