@@ -161,11 +161,24 @@ def search(request):
 
 @login_required(login_url='/login')
 def show_bookmark(request):
+
+    # if(request.method=='POST'):
+    #     t=
     a=request.user
     b=Bookm.objects.filter(user_id=a)
-    
-    
-
-    #list_post=BlogPost.objects.filter(b)
     params={'posts':b}
     return render(request,'bookmarks.html',params)
+
+def bookmark(request,post_id):
+    c=BlogPost.objects.get(post_id=post_id)
+    # print(c)
+    if(Bookm.objects.filter(post_id=c)).exists():
+        return redirect('show_bookmark')
+    temp=Bookm(user_id=request.user,post_id=c)
+    temp.save()
+    return redirect('show_bookmark')
+
+def rem_bookmark(request,post_id):
+    Bookm.objects.filter(post_id=post_id).delete()
+    return redirect('show_bookmark')
+

@@ -12,14 +12,20 @@
       <article class="blog-post">
         <h2 class="blog-post-title mb-1">{{posts.title}}</h2>
         {% comment %} <p class="blog-post-meta">{{posts.publish_date}}<a href="#"></a></p> {% endcomment %}
-
+        <h3>{{posts.company_name}}</h3>
+        <h3>{{posts.year}}</h3>
+        
+        
         <p>{{posts.content}}
         </p>
+        <form action="/bookmark/{{posts.post_id}}" method="POST">{% csrf_token %}
+        
+          <input type='submit' name='bookmarkit' value='bookmark'></input>
+        </form>
         <div class="fb-comments" data-href="http://localhost:8000/post/{{post_id}}" data-width="" data-numposts="10"></div>
       </article>
 
       </div>
 
     </div>
-
 {%endblock%}
