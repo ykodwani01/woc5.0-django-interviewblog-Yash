@@ -14,14 +14,14 @@ urlpatterns = [
     path('search',views.search,name='search'),
     path('logout',views.logout_handler,name='logout_handler'),
     path('add',views.add,name="add"),
+    path('mypost',views.mypost,name="mypost"),
     path('bookmarks',views.show_bookmark,name='show_bookmark'),
     path('bookmark/<int:post_id>',views.bookmark,name='bookmark'),
+    path('edit/<int:post_id>',views.edit,name='edit'),
+    path('editprofile',views.edit_profile,name="edit_profile"),
     path('remove_bookmark/<int:post_id>',views.rem_bookmark,name='rem_bookmark'),
     path("post/<int:post_id>",views.post,name="post"),
-    
-    path("reset",auth_views.PasswordResetView.as_view()),
-    path('password_reset_done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),   
+    path('del/<int:post_id>',views.dele,name="dele")
+  
     
 ]

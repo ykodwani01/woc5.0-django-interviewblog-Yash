@@ -1,0 +1,39 @@
+{% extends 'basic.html' %}    
+
+{%block title%}My Post Page{%endblock%}
+
+{%block body%}
+
+
+
+{% if posts %}
+{%for i in posts%}
+<main class="container">
+  <div class="row mb-2">
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          
+          <h3 class="mb-0">{{i.title}}</h3>
+          
+          <h6>author {{i.author}}</h6>
+          <h6>Company {{i.company_name}}</h6>
+          
+          <a href="post/{{i.post_id}}" class="stretched-link">Continue reading</a>
+          <a href="/del/{{i.post_id}}" class="stretched-link">Delete Post</a>
+          <a href="/edit/{{i.post_id}}" class="stretched-link">Edit Post</a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</main>
+{%endfor%}
+
+
+{%else%}
+No Posts to show! <a href="/add">Add </a>your Post now.
+{%endif%}
+
+
+{%endblock%}

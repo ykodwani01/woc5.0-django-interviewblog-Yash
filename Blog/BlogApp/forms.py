@@ -27,3 +27,15 @@ class CreateNewPost(forms.Form):
     job_offer=forms.ChoiceField(label="Job Type",choices=(('Summer Intern','Summer Intern'),('Job','Job'),('PPO','PPO'),('Winter Intern','Winter Intern')))
     company_name=forms.CharField(label="Company")
     author=forms.CharField(label="Author")
+
+
+class UpdateUserForm(forms.ModelForm):
+
+    contact_number = forms.CharField(label='Contact Number',required=True) 
+    course = forms.ChoiceField(label="Course", choices=[('BTECH','BTECH'),('MCA','MCA'),('MTECH','MTECH'),('COMMERCE','COMMERCE'),('MTECH','MTECH'),('MSC','MSC')], required=True)
+    batch=forms.IntegerField(label="Batch",required=True)
+    class Meta:
+        model=User
+        fields=['first_name','batch','course','contact_number']
+
+

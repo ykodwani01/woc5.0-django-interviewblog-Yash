@@ -1,0 +1,53 @@
+{% extends 'basic.html' %}    
+
+{%block title%}Add Post{%endblock%}
+
+{%block body%}
+<form action="/edit/{{a.post_id}}" method="POST"  >
+    {% csrf_token %}
+    
+
+    
+        <div class="form-group">
+          Title
+          <input type="text" class="form-control" id="title" name="title" value="{{a.title}}" required>
+        </div>
+
+        <div class="form-group">
+          Year
+          <input type="number" class="form-control" id="year" name="year" value={{a.year}} required>
+        </div>
+
+        
+
+          <div class="form-group">
+          Company
+            <input type="text" class="form-control" id="company" name="company" value="{{a.company_name}}" required>
+          </div>
+        <div class="form-group">
+          <label for="job_type">Example select</label>
+          <select class="form-control" id="job_type" name="job_type" required>
+            <option>PPO</option>
+            <option>JOB</option>
+            <option>SUMMER INTERN</option>
+            <option>WINTER INTERN</option>
+            
+          </select>
+        </div>
+        
+        {% comment %} {{a.content}} {% endcomment %}
+        <div class="form-group">
+          <label for="content">Content</label>
+          <textarea class="form-control" id="content" name="content" rows="10" required>{{a.content}}</textarea>
+        </div>
+
+        <input type="submit" name="submit" ></input>
+      </form>
+<p>
+        {%for message in messages%}
+        
+        {{message}}
+
+        {%endfor%}
+</p>
+{%endblock%}

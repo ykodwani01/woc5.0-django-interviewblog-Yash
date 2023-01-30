@@ -3,8 +3,7 @@
 {%block title%}Blog Page{%endblock%}
 
 {%block body%}
-<div id="fb-root"></div>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v15.0" nonce="IcXy9rSX"></script>
+
 
 <div class="container">
     <div class="col-md-8">
@@ -12,8 +11,8 @@
       <article class="blog-post">
         <h2 class="blog-post-title mb-1">{{posts.title}}</h2>
         {% comment %} <p class="blog-post-meta">{{posts.publish_date}}<a href="#"></a></p> {% endcomment %}
-        <h3>{{posts.company_name}}</h3>
-        <h3>{{posts.year}}</h3>
+        <h4>Company : {{posts.company_name}}</h4>
+        <h4>Year Published: {{posts.year}}</h4>
         
         
         <p>{{posts.content}}
@@ -22,7 +21,7 @@
         
           <input type='submit' name='bookmarkit' value='bookmark'></input>
         </form>
-        <div class="fb-comments" data-href="http://localhost:8000/post/{{post_id}}" data-width="" data-numposts="10"></div>
+        <div class="fb-comments" data-href="http://localhost:8000/post/{{posts.post_id}}" data-width="" data-numposts="10"></div>
       </article>
 
       </div>

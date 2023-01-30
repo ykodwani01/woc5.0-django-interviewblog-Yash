@@ -10,6 +10,7 @@ from django.core.mail import send_mail
 from .forms import CreateUserForm
 from django.contrib import messages
 from .models import *
+from django.db.models import Q
 from .forms import *
 
 
@@ -155,7 +156,8 @@ def add(request):
 
 def search(request):
     query=request.GET.get('query')
-    posts=BlogPost.objects.filter(title__icontains=query)
+    posts=BlogPost.objects.filter(title__icontains=query) | BlogPost.objects.filter(company_name__icontains=query) 
+
     params={ 'posts' : posts }
     return render(request,'search_results.html',params)
 
@@ -172,13 +174,78 @@ def show_bookmark(request):
 def bookmark(request,post_id):
     c=BlogPost.objects.get(post_id=post_id)
     # print(c)
-    if(Bookm.objects.filter(post_id=c)).exists():
+    if(Bookm.objects.filter(post_id=c,user_id=request.user)).exists():
         return redirect('show_bookmark')
     temp=Bookm(user_id=request.user,post_id=c)
     temp.save()
     return redirect('show_bookmark')
 
 def rem_bookmark(request,post_id):
-    Bookm.objects.filter(post_id=post_id).delete()
+    Bookm.objects.filter(post_id=post_id,user_id=request.user).delete()
     return redirect('show_bookmark')
+
+def mypost(request):
+    posts=BlogPost.objects.filter(author=request.user)
+    # print(a)
+    params={'posts':posts}
+    return render(request,'mypost.html',params)
+
+def dele(request,post_id):
+    BlogPost.objects.filter(author=request.user,post_id=post_id).delete()
+    return redirect('home')
+
+def edit(request,post_id):
+    a=BlogPost.objects.get(author=request.user,post_id=post_id)
+    params={'a':a}
+    if request.method=='POST':
+        
+        title=request.POST.get('title')
+        content=request.POST.get('content')
+        company=request.POST.get('company')
+        
+        job_type=request.POST.get('job_type')
+        year=request.POST.get('year')
+        if job_type=="WINTER INTERN":
+            a=3
+        if job_type=="JOB":
+            a=1
+        if job_type=="SUMMER INTERN":
+            a=0
+        if job_type=="PPO":
+            a=2
+        
+        temp=BlogPost.objects.filter(post_id=post_id).update(title=title,content=content,company_name=company,year=year,job_offer=a)
+        return redirect('home')
+        
+    return render(request,'edit_page.html',params)
+
+def edit_profile(request):
+    user=request.user
+    form = UpdateUserForm(initial={
+        'first_name': user.first_name,
+        'course': user.profile.course,
+        'batch': user.profile.batch,
+        'contact_number': user.profile.contact_number,
+    })
+
+    if(request.method=='POST'):
+        
+        form=UpdateUserForm(request.POST,request.FILES)
+        if form.is_valid():
+            user=request.user
+            first_name = form.cleaned_data.get('first_name')
+            contact_number = form.cleaned_data.get('contact_number')
+            batch = form.cleaned_data.get('batch')
+            course = form.cleaned_data.get('course')
+
+            pr=Profile.objects.get(user=request.user)
+            pr.batch=batch
+            pr.course=course
+            pr.contact_number=contact_number
+            user.first_name = first_name
+            user.save()
+            pr.save()
+            return redirect('profile')
+    return render(request,'editprofile.html',{'form':form})
+
 
