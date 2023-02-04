@@ -10,6 +10,7 @@ urlpatterns = [
     path('home',views.home,name='home'),
     path('profile',views.profile,name='profile'),
     path('register',views.register,name='register'),
+    path('accounts/login/',views.login_handler,name="redirect"),
     path('login',views.login_handler,name='login_handler'),
     path('search',views.search,name='search'),
     path('logout',views.logout_handler,name='logout_handler'),
@@ -21,7 +22,16 @@ urlpatterns = [
     path('editprofile',views.edit_profile,name="edit_profile"),
     path('remove_bookmark/<int:post_id>',views.rem_bookmark,name='rem_bookmark'),
     path("post/<int:post_id>",views.post,name="post"),
-    path('del/<int:post_id>',views.dele,name="dele")
+    path('del/<int:post_id>',views.dele,name="dele"),
+
+
+
+
+    #password forgot urls
+    path('reset_password/',auth_views.PasswordResetView.as_view(),name="reset_password"),
+    path('reset_password_sent/',auth_views.PasswordResetDoneView.as_view(),name="password_reset_done"),
+    path('reset/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(),name="password_reset_confirm"),
+    path('reset_complete/',auth_views.PasswordResetCompleteView.as_view(),name="password_reset_complete"),
   
     
 ]
