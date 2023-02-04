@@ -47,8 +47,9 @@ def profile(request):
     # print(temp)
     b=temp.batch
     c=temp.course
+    i=temp.image
     print(b)
-    params={'b':b,'c':c}
+    params={'b':b,'c':c,'i':i}
 
 
     return render(request,'dashboard.html',params)
@@ -71,11 +72,11 @@ def register(request):
         
     #     myuser.save()
     #     return render(request,'index.html')
-    form=CreateUserForm(request.POST)
+    form=CreateUserForm(request.POST,request.FILES)
 
     
     if(request.method=="POST"):
-        # print(form)
+        #print(request.POST)
         
         if form.is_valid():
             # user.email=user
@@ -83,9 +84,11 @@ def register(request):
             user=form.save()
             user.batch=form.cleaned_data.get('batch')
             user.course=request.POST.get('course')
+            user.image=form.cleaned_data.get('image')
+            print(user.image)
             #user.email=form.cleaned_data('email')
             user.contact_number=request.POST.get('contact_number')
-            print(user)
+            print(request.POST)
             amp=User.objects.get(username=user)
             amp.email=amp.username
             amp.save()
@@ -96,6 +99,7 @@ def register(request):
             hello.batch=user.batch
             hello.contact_number=user.contact_number
             hello.course=user.course
+            hello.image=user.image
             hello.save()
             
             return redirect(index)
@@ -229,7 +233,7 @@ def edit_profile(request):
     })
 
     if(request.method=='POST'):
-        
+
         form=UpdateUserForm(request.POST,request.FILES)
         if form.is_valid():
             user=request.user

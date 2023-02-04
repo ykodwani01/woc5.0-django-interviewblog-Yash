@@ -12,12 +12,13 @@ class CreateUserForm(UserCreationForm):
     contact_number = forms.CharField(label='Contact Number',required=True) 
     course = forms.ChoiceField(label="Course", choices=[('BTECH','BTECH'),('MCA','MCA'),('MTECH','MTECH'),('COMMERCE','COMMERCE'),('MTECH','MTECH'),('MSC','MSC')], required=True)
     batch=forms.IntegerField(label="Batch",required=True)
+    image=forms.ImageField(label="Your Image",required=False)
     
 
     class Meta:
         # User.username=User.email
         model = User
-        fields=['username','first_name','email','batch','course','password1','password2']
+        fields=['username','first_name','email','batch','course','image','password1','password2']
 
 
 class CreateNewPost(forms.Form):

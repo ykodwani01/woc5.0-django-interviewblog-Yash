@@ -9,10 +9,11 @@
     <h4>Your batch is {{b}}</h4>
     <h4>Your course is {{c}}</h4> {% endcomment %}
     <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src = "" alt="Image will be here">
+        <img class="card-img-top" src = "/media/{{i}}">
+        <h5 class="card-title">Email : {{request.user.username}}</h5>
         <div class="card-body">
-          <h5 class="card-title">Email : {{request.user.username}}</h5>
           <p class="card-text">{{request.user.first_name}}</p>
+         
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Batch : {{request.user.profile.batch}}</li>
