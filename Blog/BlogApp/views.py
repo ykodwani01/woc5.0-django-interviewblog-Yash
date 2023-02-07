@@ -26,6 +26,7 @@ def login_handler(request):
 
     if request.user.is_authenticated:
         return redirect('profile')
+        
     if(request.method=="POST"):
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -229,6 +230,7 @@ def edit_profile(request):
         'first_name': user.first_name,
         'course': user.profile.course,
         'batch': user.profile.batch,
+        'image': user.profile.image,
         'contact_number': user.profile.contact_number,
     })
 
@@ -241,10 +243,13 @@ def edit_profile(request):
             contact_number = form.cleaned_data.get('contact_number')
             batch = form.cleaned_data.get('batch')
             course = form.cleaned_data.get('course')
+            image=form.cleaned_data.get('image')
 
             pr=Profile.objects.get(user=request.user)
             pr.batch=batch
             pr.course=course
+            pr.image=image
+            
             pr.contact_number=contact_number
             user.first_name = first_name
             user.save()

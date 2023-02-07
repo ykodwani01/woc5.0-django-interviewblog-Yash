@@ -35,8 +35,9 @@ class UpdateUserForm(forms.ModelForm):
     contact_number = forms.CharField(label='Contact Number',required=True) 
     course = forms.ChoiceField(label="Course", choices=[('BTECH','BTECH'),('MCA','MCA'),('MTECH','MTECH'),('COMMERCE','COMMERCE'),('MTECH','MTECH'),('MSC','MSC')], required=True)
     batch=forms.IntegerField(label="Batch",required=True)
+    image=forms.ImageField(label="Your Image",required=False)
     class Meta:
         model=User
-        fields=['first_name','batch','course','contact_number']
+        fields=['first_name','batch','course','contact_number','image']
 
 
