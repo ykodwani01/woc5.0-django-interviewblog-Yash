@@ -37,7 +37,19 @@
         
         <div class="form-group">
           <label for="content">Content</label>
-          <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
+          
+            <textarea name="content" id="content"></textarea>
+            <script>
+                    ClassicEditor
+                            .create( document.querySelector( '#content' ) )
+                            .then( editor => {
+                                    console.log( editor );
+                            } )
+                            .catch( error => {
+                                    console.error( error );
+                            } );
+            </script>
+        
           
         </div>
 
