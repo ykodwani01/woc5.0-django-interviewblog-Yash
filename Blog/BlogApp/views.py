@@ -114,7 +114,15 @@ def register(request):
 
 @login_required(login_url='/login')
 def home(request):
-    temp=BlogPost.objects.all()
+    a=Bookm.objects.all()
+    for i in a:
+        i.post_id.count=i.post_id.count+1
+        i.post_id.save()
+        #print(i.post_id.count)
+    b=BlogPost.objects.all()
+    #print("hello")
+    #print(b[4].count)
+    temp=BlogPost.objects.all().order_by('-count')
     params={'posts': temp}
     return render(request,'blogpage.html',params)
 

@@ -24,6 +24,8 @@ class BlogPost(models.Model):
     company_name=models.CharField(max_length=200,default="")
     author=models.ForeignKey(User,on_delete=models.CASCADE,blank=True,null=True)
     year=models.IntegerField(default=0)
+    count=models.IntegerField(default=0,null=True)
+    
 
     def __str__(self):
         return self.title
