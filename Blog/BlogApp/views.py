@@ -18,6 +18,7 @@ from .forms import *
 
 def index(request):
     return render(request,'index.html')
+
 def logout_handler(request):
     logout(request)
     return redirect('index')
@@ -150,13 +151,13 @@ def add(request):
         print(job_type)
         year=request.POST.get('year')
         if job_type=="WINTER INTERN":
-            a=3
+            a='WINTER INTERN'
         if job_type=="JOB":
-            a=1
+            a='JOB'
         if job_type=="SUMMER INTERN":
-            a=0
+            a='SUMMER INTERN'
         if job_type=="PPO":
-            a=2
+            a='PPO'
         print(a)
         temp=request.user
         hello=BlogPost(title=title,content=content,company_name=company,author=temp,job_offer=a,year=year)
@@ -169,7 +170,7 @@ def add(request):
 
 def search(request):
     query=request.GET.get('query')
-    posts=BlogPost.objects.filter(title__icontains=query) | BlogPost.objects.filter(company_name__icontains=query) 
+    posts=BlogPost.objects.filter(title__icontains=query) | BlogPost.objects.filter(company_name__icontains=query)  | BlogPost.objects.filter(job_offer__icontains=query)
 
     params={ 'posts' : posts }
     return render(request,'search_results.html',params)
@@ -219,13 +220,13 @@ def edit(request,post_id):
         job_type=request.POST.get('job_type')
         year=request.POST.get('year')
         if job_type=="WINTER INTERN":
-            a=3
+            a='WINTER INTERN'
         if job_type=="JOB":
-            a=1
+            a='JOB'
         if job_type=="SUMMER INTERN":
-            a=0
+            a='SUMMER INTERN'
         if job_type=="PPO":
-            a=2
+            a='PPO'
         
         temp=BlogPost.objects.filter(post_id=post_id).update(title=title,content=content,company_name=company,year=year,job_offer=a)
         return redirect('home')

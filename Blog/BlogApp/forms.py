@@ -25,7 +25,7 @@ class CreateNewPost(forms.Form):
     
     title=forms.CharField(label="Title")
     content=forms.CharField(label="Content")
-    job_offer=forms.ChoiceField(label="Job Type",choices=(('Summer Intern','Summer Intern'),('Job','Job'),('PPO','PPO'),('Winter Intern','Winter Intern')))
+    job_offer=forms.ChoiceField(label="Job Type",choices=((1,'Summer Intern'),(2,'Job'),(3,'PPO'),(4,'Winter Intern')))
     company_name=forms.CharField(label="Company")
     author=forms.CharField(label="Author")
 

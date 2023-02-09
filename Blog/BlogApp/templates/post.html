@@ -15,8 +15,8 @@
         <h4>Year Published: {{posts.year}}</h4>
         
         
-        <p>{{posts.content}}
-        </p>
+        <p>{{posts.content  | safe}}</p>
+        
         <form action="/bookmark/{{posts.post_id}}" method="POST">{% csrf_token %}
         
           <input type='submit' name='bookmarkit' value='bookmark'></input>
