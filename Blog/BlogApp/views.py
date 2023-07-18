@@ -84,6 +84,7 @@ def register(request):
             # user.email=user
 
             user=form.save()
+            print(user)
             user.batch=form.cleaned_data.get('batch')
             user.course=request.POST.get('course')
             user.image=form.cleaned_data.get('image')
@@ -103,6 +104,9 @@ def register(request):
             hello.course=user.course
             hello.image=user.image
             hello.save()
+            
+            # temp2=Profile(user=request.POST.get('username'))
+            # print(temp2)
             
             return redirect(index)
         else:
@@ -266,4 +270,21 @@ def edit_profile(request):
             return redirect('profile')
     return render(request,'editprofile.html',{'form':form})
 
+def report(request,pid):
 
+    a=request.user
+    if(RepU.objects.filter(post_id=pid,user_id=request.user)).exists():
+        return redirect(home)
+    x=BlogPost.objects.filter(post_id=pid)[0]
+    temp = RepU(user_id=a,post_id=x)
+    temp.save()
+    print("hello")
+    count=0
+    for i in RepU.objects.all():
+        if(i.post_id.post_id==pid):
+            count=count+1
+    if count > 3 :
+        x.delete()
+    print("hello")
+    print(count)
+    return redirect(home)

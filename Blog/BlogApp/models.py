@@ -34,6 +34,13 @@ class Bookm(models.Model):
     user_id=models.ForeignKey(User,on_delete=models.CASCADE,blank=True,null=True)
     post_id=models.ForeignKey(BlogPost, on_delete=models.CASCADE,blank=True,null=True)
 
+class RepU(models.Model):
+    user_id=models.ForeignKey(User,on_delete=models.CASCADE,blank=True,null=True)
+    post_id=models.ForeignKey(BlogPost,on_delete=models.CASCADE,blank=True,null=True)
+
+
+
+
     
 
 

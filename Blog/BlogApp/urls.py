@@ -23,9 +23,10 @@ urlpatterns = [
     path('remove_bookmark/<int:post_id>',views.rem_bookmark,name='rem_bookmark'),
     path("post/<int:post_id>",views.post,name="post"),
     path('del/<int:post_id>',views.dele,name="dele"),
+    path('report/<int:pid>',views.report,name="report"),
 
 
-
+    
 
     #password forgot urls
     path('reset_password/',auth_views.PasswordResetView.as_view(),name="reset_password"),

@@ -21,6 +21,13 @@
         
           <input type='submit' name='bookmarkit' value='bookmark'></input>
         </form>
+
+
+        <form action="/report/{{posts.post_id}}" method="POST">{% csrf_token %}
+        
+          <input type='submit' name='report' value='report'></input>
+        </form>
+
         <div class="fb-comments" data-href="http://localhost:8000/post/{{posts.post_id}}" data-width="" data-numposts="10"></div>
       </article>
 
